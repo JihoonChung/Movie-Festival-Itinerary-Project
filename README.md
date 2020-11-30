@@ -1,2 +1,2 @@
-# MIE368_project
-Movie Festival Itinerary
+# Movie Festival Itinerary
+MIE 368 project
