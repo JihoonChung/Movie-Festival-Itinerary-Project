@@ -1,2 +1,4 @@
 # MIE368_project
- 
+ The motivation for this project stems from the difficulty of moviegoers to make the most of a day at a movie festival, due to the plethora of movie options and potentially conflicting time slots. For the optimal experience, a moviegoer should prioritize movies with high ratings from the audience, while accounting for their budget and time constraints. Assuming the movies at the festival are not publicly available yet, the team aims to predict audience reviews to create a movie festival itinerary.
+The team has developed a regression model to make the predictions based on data from Rotten Tomatoes, a movie review platform on which movies are evaluated using a Tomatometer Score (critics score) and an Audience Score. The goal is to predict the Audience Scores of movies to plan an optimal itinerary for one day at the festival which maximizes the total anticipated Audience Score.
+
