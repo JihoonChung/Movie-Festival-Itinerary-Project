@@ -1,28 +1,49 @@
-# Movie Festival Itinerary 
+## Enhanced README: Movie Festival Itinerary Project
 
-1.0 Introduction 
-	Movie festivals are huge events for movie goers where several movies are screened or premier for audiences. With so many different movie options and time slots, moviegoers would need to carefully plan their day at the festival in order to get the optimal experience. To achieve this, they should prioritize watching movies that have high ratings from the audience while keeping in mind their budget and time constraints. Assuming the movies have not yet been released to the public, the team aims to predict the Audience Score as a metric to measure the utility for the moviegoer before planning an itinerary for a day at a movie festival.
-	To predict the Audience Score and maximize the utility for a moviegoer’s itinerary, the team made prediction and optimization models using data from Rotten Tomatoes where scores from audience and critics is recorded. On this site, movies are evaluated using a Tomatometer Score, which is a measurement of recommendation based on the opinions of hundreds of critics, and an Audience Score, which is the percentage of users who have rated the movie positively [1]. Therefore, the goal of this project is to reliably predict the Audience Score of films and create an optimal movie itinerary.
+### 1.0 Introduction
 
-2.0 Data
-    To obtain features to predict the Audience Score, data was collected from five different datasets. The team had to gather extra data for as many movies in the “Rotten Tomato Movie Reviews” dataset as possible, since this dataset contains the target variable Audience Score. Next, information regarding the cast and directors for each film came from the “All Movie” dataset. Finally, the numerical values for each of the cast members and directors were obtained from the “900 acclaimed directors awards” dataset, and were also obtained through manipulating the “IMDB Analysis” and “the oscar award” datasets.
+**Objective**: Movie festivals offer a rich array of films, attracting cinema enthusiasts who must carefully select which movies to watch to maximize their experience. This project aims to predict the **Audience Score** of unreleased films based on data from Rotten Tomatoes, which uses both a **Tomatometer Score** and an **Audience Score** to evaluate films. Utilizing these predictions, the project seeks to create an optimal movie festival itinerary that maximizes the utility for moviegoers.
 
-3.0 Method
-3.1 Prediction
-In the prediction phase, the team explores five regression models—linear regression, LassoCV, RidgeCV, Decision Tree Regressor, and Random Forest Regressor. These models are employed to predict the Audience Score, a continuous target variable, using a mixture of independent continuous and categorical variables. Baseline models are initially created with default parameters, and the dataset is split into training and test sets. Initial results reveal overfitting issues with Random Forest Regressor and Decision Tree Regressor. To enhance performance, the team engages in feature engineering, addressing missing values and optimizing feature combinations, resulting in an 11% improvement in baseline scores.
+### 2.0 Data Collection and Sources
 
-Subsequent steps involve feature selection using mutual information regression, bagging to reduce variance, and scaling the data for standardized comparisons. Grid search is employed for optimal hyperparameters, and a stacking ensemble is created. Clustering is used for each baseline model, and the top-performing models are stacked together with a RidgeCV metamodel. After parameter tuning, the best-performing model is selected as the final prediction model, achieving a test score of 39.9%.
+**Data Sources**: 
+- **Rotten Tomato Movie Reviews**: Primary source for Audience Scores.
+- **All Movie Dataset**: Provides detailed information on film casts and directors.
+- **900 Acclaimed Directors Awards & IMDB Analysis**: Used for gathering numerical values and accolades of the film industry professionals.
+- **The Oscar Award Dataset**: Utilized for additional data points related to film awards and recognitions.
 
-3.2 Optimization
-The optimization phase aims to create an optimal movie festival itinerary that maximizes viewer utility, represented by the sum of predicted Audience Scores from the final prediction model. Binary decision variables determine whether a movie is watched at a specific time slot. The optimization problem assumes movies start every hour, with each time slot lasting 2.5 hours. To assess the model's performance, actual Audience Scores are compared with predicted scores in itinerary creation. If the optimization model accurately reproduces the itinerary with predicted scores, it suggests potential use for unreleased movies, validating the model's accuracy.
+**Strategy**: The team expanded the primary dataset with additional data points to enrich the predictive accuracy of the Audience Score.
 
-4.0 Results
-This project comprises two main components: the prediction model and the optimization model. The prediction model's performance is assessed using the R2 score, while the optimization model is evaluated based on successfully implemented constraints. The team compared the itinerary generated using predicted audience scores with an itinerary using real audience scores, both yielding the same movie combinations but in different time slots. These variations are considered optimal solutions, as the time slots were not assigned values. This achievement reflects the project goal of creating an optimal movie festival itinerary.
+### 3.0 Methodology
 
-5.0 Discussion
-While the team is satisfied with the combined results of the prediction and optimization models, certain compromises were made throughout the project to ensure feasibility within the given time frame. One compromise involved assuming that all collected data was up to date, particularly in cases where Facebook likes data from 2010 may not accurately reflect current social media trends. Feature engineering addressed null values in Facebook likes, revealing the sensitivity of this feature in the prediction model.
+#### 3.1 Prediction Model Development
 
-Several weaknesses were identified, including the prediction model's inability to distinguish between scores accurately, potential issues with fastidious moviegoers or tight budget constraints, and concerns about the scalability and computational time of the optimization model.
+**Approach**:
+- **Regression Models Tested**: Linear Regression, LassoCV, RidgeCV, Decision Tree Regressor, and Random Forest Regressor.
+- **Model Selection and Tuning**: Initial models indicated overfitting with complex models like Random Forest. Subsequent fine-tuning through feature engineering, mutual information regression for feature selection, and hyperparameter optimization using Grid Search helped improve the models.
+- **Ensemble Techniques**: A stacking ensemble approach with a RidgeCV meta-model proved most effective, incorporating the strengths of individual models to enhance prediction accuracy.
 
-6.0 Conclusion
-The best prediction model, achieving a maximum test score of around 40% with a RidgeCV stacked ensemble, serves its purpose in creating an optimal movie itinerary. While the model excels in distinguishing between "bad" and "watchable" movies rather than predicting exact scores, it effectively contributes to the optimization model. The successful alignment of chosen movies in itineraries based on predicted and actual audience scores attests to the model's ability to facilitate the creation of an optimal movie festival schedule.
+#### 3.2 Optimization Model
+
+**Objective**: Construct an optimal viewing schedule by selecting films that maximize the sum of predicted Audience Scores within the constraints of festival timings and duration.
+- **Binary Decision Variables**: These determine the inclusion of a film in a specific time slot.
+- **Model Validation**: The success of the optimization model was measured by comparing predicted itineraries against actual scores to validate the effectiveness of the predictions.
+
+### 4.0 Results
+
+**Evaluation**:
+- **Prediction Accuracy**: The final model achieved a **R2 score** of 39.9%, indicating moderate predictive power, primarily distinguishing between lower and higher-quality films.
+- **Optimization Success**: The optimization model was effective in aligning movie schedules based on predicted scores closely matching those based on actual audience scores.
+
+### 5.0 Discussion
+
+**Challenges & Compromises**:
+- **Data Assumptions**: The project assumed the accuracy of historical data, like Facebook likes, which may not reflect current trends accurately.
+- **Model Limitations**: The prediction model was less effective in pinpointing precise audience scores but was adequate for identifying films worth watching.
+- **Scalability and Computational Efficiency**: These remain areas for further improvement and testing.
+
+### 6.0 Conclusion
+
+**Summary**: The project successfully developed a predictive model that, despite certain limitations, effectively contributes to creating an optimal itinerary for movie festival attendees. The alignment of recommended itineraries based on predicted and actual scores highlights the practical utility of the models developed.
+
+This enhanced README provides a structured and detailed overview of the project, maintaining a balance between technical explanations and readability for a wider audience.
