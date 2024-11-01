@@ -1,4 +1,4 @@
-## Enhanced README: Movie Festival Itinerary Project
+## README: Movie Festival Itinerary Project
 
 ### 1.0 Introduction
 
